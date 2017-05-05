@@ -18,6 +18,8 @@
           <li><a ng-href="/users">Users</a></li>
           <li>-------------------</li>
           <li><a ng-href="/latest">Latest</a></li>
+          <li ng-repeat="topic in topics"><a ng-href="/topics/{{topic.id}}">{{topic.name}}</a></li>
+          <li ng-show="loggedIn"><a ng-href="/topics/new">Create New Topic</a></li>
         </ul>
       </nav>
       <div ng-show="errors" class="errors">{{ errors }}</div>
@@ -26,11 +28,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
-    <script src="./scripts/app.js"></script>
-    <script src="./scripts/nav/controller.js"></script>
-    <script src="./scripts/messages/index.js"></script>
-    <script src="./scripts/messages/service.js"></script>
-    <script src="./scripts/users/index.js"></script>
-    <script src="./scripts/users/service.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/nav/controller.js"></script>
+    <script src="/scripts/messages/index.js"></script>
+    <script src="/scripts/messages/service.js"></script>
+    <script src="/scripts/users/index.js"></script>
+    <script src="/scripts/users/service.js"></script>
+    <script src="/scripts/topics/index.js"></script>
+    <script src="/scripts/topics/service.js"></script>
   </body>
 </html>

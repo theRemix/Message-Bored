@@ -2,11 +2,11 @@ angular.module('Users', [])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/users', {
-        templateUrl: 'scripts/users/list.html',
+        templateUrl: '/scripts/users/list.html',
         controller: 'ListCtrl'
       })
       .when('/login', {
-        templateUrl: 'scripts/users/login.html',
+        templateUrl: '/scripts/users/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
@@ -15,7 +15,7 @@ angular.module('Users', [])
         controller: 'LogoutCtrl'
       })
       .when('/register', {
-        templateUrl: 'scripts/users/new.html',
+        templateUrl: '/scripts/users/new.html',
         controller: 'NewCtrl',
         controllerAs: 'user'
       });

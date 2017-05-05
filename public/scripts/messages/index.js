@@ -2,11 +2,11 @@ angular.module('Messages', ['ngRoute'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/messages/latest', {
-        templateUrl: 'scripts/messages/list.html',
+        templateUrl: '/scripts/messages/list.html',
         controller: 'LatestCtrl'
       })
       .when('/messages/new', {
-        templateUrl: 'scripts/messages/new.html',
+        templateUrl: '/scripts/messages/new.html',
         controller: 'NewMessageCtrl'
       });
   }])

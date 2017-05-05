@@ -1,6 +1,6 @@
 /* globals angular */
 
-angular.module('app', ['ngRoute', 'Messages', 'Users'])
+angular.module('app', ['ngRoute', 'Messages', 'Users', 'Topics'])
 .config(['$locationProvider',
   function($locationProvider) {
 
