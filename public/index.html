@@ -18,7 +18,7 @@
           <li><a ng-href="/users">Users</a></li>
           <li>-------------------</li>
           <li><a ng-href="/latest">Latest</a></li>
-          <li ng-repeat="topic in topics"><a ng-href="/topics/{{topic.id}}">{{topic.name}}</a></li>
+          <li ng-repeat="topic in nav.topics"><a ng-href="/topics/{{topic.id}}">{{topic.name}}</a></li>
           <li ng-show="loggedIn"><a ng-href="/topics/new">Create New Topic</a></li>
         </ul>
       </nav>

@@ -1,5 +1,7 @@
 <ul>
-  <li ng-repeat="message in messages">
-    {{ message.body }}
+  <li ng-repeat="message in latest.messages">
+    <h3 class="latest-messages-topic">{{ message.Topic.name }}</h3>
+    <h4 class="message-posted-by">posted by {{ message.Author.name }} at {{ message.createdAt | date }}</h4>
+    <div class="latest-message-body">{{ message.body }}</div>
   </li>
 </ul>

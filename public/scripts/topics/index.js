@@ -13,8 +13,8 @@ angular.module('Topics', [])
       });
   }])
   .controller('NewCtrl', [
-    '$rootScope','$scope','$location','TopicService',
-    function($rootScope, $scope, $location, TopicService){
+    '$rootScope','$location','TopicService',
+    function($rootScope, $location, TopicService){
 
       this.create = function(newTopic){
         newTopic.created_by = localStorage.getItem('user_id');
@@ -36,10 +36,9 @@ angular.module('Topics', [])
     function($rootScope, $location, $route, TopicService, MessageService){
 
       this.topic_id = $route.current.params.id;
-      this.name = '';
       TopicService.getById(this.topic_id)
         .then( topic => {
-          this.name = topic.name;
+          Object.assign(this, topic);
         }, err => {
           $rootScope.errors = "Error getting topic from API";
           console.error(err);

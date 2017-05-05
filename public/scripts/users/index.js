@@ -3,7 +3,8 @@ angular.module('Users', [])
     $routeProvider
       .when('/users', {
         templateUrl: '/scripts/users/list.html',
-        controller: 'ListCtrl'
+        controller: 'ListCtrl',
+        controllerAs: 'list'
       })
       .when('/login', {
         templateUrl: '/scripts/users/login.html',
@@ -21,13 +22,13 @@ angular.module('Users', [])
       });
   }])
   .controller('ListCtrl', [
-    '$rootScope','$scope','UserService',
-    function($rootScope, $scope, UserService){
+    '$rootScope','UserService',
+    function($rootScope, UserService){
 
-      $scope.users = [];
+      this.users = [];
       UserService.all()
         .then( users => {
-          $scope.users = users;
+          this.users = users;
         }, err => {
           $rootScope.errors = "Error getting latest messages from API";
           console.error(err);
@@ -36,8 +37,8 @@ angular.module('Users', [])
     }
   ])
   .controller('NewCtrl', [
-    '$rootScope','$scope','$location','UserService',
-    function($rootScope, $scope, $location, UserService){
+    '$rootScope','$location','UserService',
+    function($rootScope, $location, UserService){
 
       this.create = function(newUser){
         UserService.create(newUser)
@@ -55,8 +56,8 @@ angular.module('Users', [])
     }
   ])
   .controller('LoginCtrl', [
-    '$rootScope','$scope','$location','UserService',
-    function($rootScope, $scope, $location, UserService){
+    '$rootScope','$location','UserService',
+    function($rootScope, $location, UserService){
 
       this.send = function(user){
         UserService.login(user)
