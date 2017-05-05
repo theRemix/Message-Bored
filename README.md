@@ -46,6 +46,7 @@ _**hint**: while writing your models, `db.sequelize.sync({force:true})` is helpf
 **associations**
 
 | Foreign Key | Name    | Relation         |
+| ----------- | ------- | ---------------- |
 | created_by  | Topic   | has many Topics  |
 | author_id   | Author  | has many Messages |
 
@@ -58,7 +59,9 @@ _**hint**: while writing your models, `db.sequelize.sync({force:true})` is helpf
 **associations**
 
 | Foreign Key | Name    | Relation         |
-| created_by  | User    | belongs to Users |
+| ----------- | ------  | ---------------- |
+| created_by  | Creator | belongs to Users |
+| topic_id    | Topic   | has many Topics  |
 
 #### Messages
 
@@ -69,10 +72,10 @@ _**hint**: while writing your models, `db.sequelize.sync({force:true})` is helpf
 **associations**
 
 | Foreign Key | Name    | Relation         |
+| ----------- | ------  | ---------------- |
 | topic_id    | Topic   | belongs to Topic |
-| author_id   | Author  | belongs to Message |
+| author_id   | Author  | belongs to Author |
 
-#### Relationships
 
 ## SQL
 
