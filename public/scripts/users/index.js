@@ -3,7 +3,7 @@ angular.module('Users', [])
     $routeProvider
       .when('/users', {
         templateUrl: '/scripts/users/list.html',
-        controller: 'ListCtrl',
+        controller: 'UsersCtrl',
         controllerAs: 'list'
       })
       .when('/login', {
@@ -17,11 +17,11 @@ angular.module('Users', [])
       })
       .when('/register', {
         templateUrl: '/scripts/users/new.html',
-        controller: 'NewCtrl',
+        controller: 'RegisterCtrl',
         controllerAs: 'user'
       });
   }])
-  .controller('ListCtrl', [
+  .controller('UsersCtrl', [
     '$rootScope','UserService',
     function($rootScope, UserService){
 
@@ -36,10 +36,9 @@ angular.module('Users', [])
 
     }
   ])
-  .controller('NewCtrl', [
+  .controller('RegisterCtrl', [
     '$rootScope','$location','UserService',
     function($rootScope, $location, UserService){
-
       this.create = function(newUser){
         UserService.create(newUser)
           .then( user => {
@@ -47,7 +46,7 @@ angular.module('Users', [])
             $rootScope.loggedIn = true;
             $location.path("/");
           }, err => {
-            $rootScope.errors = "Error saving message";
+            $rootScope.errors = "Error registering new user";
             console.error(err);
           });
 

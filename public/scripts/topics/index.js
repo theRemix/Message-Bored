@@ -3,19 +3,20 @@ angular.module('Topics', [])
     $routeProvider
       .when('/topics/new', {
         templateUrl: '/scripts/topics/new.html',
-        controller: 'NewCtrl',
+        controller: 'NewTopicCtrl',
         controllerAs: 'topic'
       })
       .when('/topics/:id', {
         templateUrl: '/scripts/topics/messages.html',
-        controller: 'MessagesCtrl',
+        controller: 'MessagesByTopicCtrl',
         controllerAs: 'topic'
       });
   }])
-  .controller('NewCtrl', [
+  .controller('NewTopicCtrl', [
     '$rootScope','$location','TopicService',
     function($rootScope, $location, TopicService){
 
+      console.log("NEW USER");
       this.create = function(newTopic){
         newTopic.created_by = localStorage.getItem('user_id');
         TopicService.create(newTopic)
@@ -31,7 +32,7 @@ angular.module('Topics', [])
 
     }
   ])
-  .controller('MessagesCtrl', [
+  .controller('MessagesByTopicCtrl', [
     '$rootScope','$location','$route','TopicService','MessageService',
     function($rootScope, $location, $route, TopicService, MessageService){
 
@@ -47,7 +48,6 @@ angular.module('Topics', [])
       this.messages = [];
       this.getMessagesByTopic = () => MessageService.byTopic(this.topic_id)
         .then( messages => {
-          console.log(messages);
           this.messages = messages;
         }, err => {
           $rootScope.errors = "Error getting messages by topic from API";
@@ -61,7 +61,6 @@ angular.module('Topics', [])
         MessageService.createMessage(newMessage)
           .then(({ data, status })=> {
             if( status === 200 ){
-              console.log(data);
               this.getMessagesByTopic();
             } else {
               $rootScope.errors = "Error saving message";
