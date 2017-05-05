@@ -14,6 +14,25 @@ messages.get('/', (req, res) =>
   }).then( res.json.bind(res) )
 );
 
+messages.get('/by-topic/:topic_id', ({ params : { topic_id } }, res) =>
+  Message.all({
+    include: [
+      {
+        model: User,
+        as: 'Author'
+      },
+      {
+        model: Topic,
+        as: 'Topic'
+      }
+    ],
+    order: [
+      ['createdAt', 'ASC']
+    ],
+    where : { topic_id }
+  }).then( res.json.bind(res) )
+);
+
 messages.get('/latest', (req, res) =>
   Message.all({
     include: [
