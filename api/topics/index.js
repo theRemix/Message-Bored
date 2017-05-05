@@ -20,6 +20,16 @@ topics.post('/', (req, res) =>
     .catch( res.json.bind(res) )
 );
 
+topics.put('/:id', ({
+    params : { id },
+    body : { name }
+  }, res) =>
+  Topic.update( { name }, { where : { id } } )
+    .then( ( [id] ) => Topic.findById(id) )
+    .then( res.json.bind(res) )
+    .catch( res.json.bind(res) )
+);
+
 module.exports = topics;
 
 
