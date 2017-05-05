@@ -14,6 +14,18 @@ topics.get('/', (req, res) =>
   .then( res.json.bind(res) )
 );
 
+topics.get('/:id', (req, res) =>
+  Topic.findById(req.params.id, {
+    include: [
+      {
+        model: User,
+        as: 'Creator'
+      }
+    ]
+  })
+  .then( res.json.bind(res) )
+);
+
 topics.post('/', (req, res) =>
   Topic.create( req.body )
     .then( res.json.bind(res) )

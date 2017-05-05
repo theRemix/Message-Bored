@@ -21,6 +21,17 @@ class TopicService{
       });
   }
 
+  getById(id){
+    return this.$http.get(this.apiTopics + "/" + id)
+      .then(({ data, status })=> {
+        if( status === 200 ){
+          return data;
+        } else {
+          throw "Error getting topic.";
+        }
+      });
+  }
+
   all(){
     return this.$http.get(this.apiTopics)
       .then(({ data, status })=> {

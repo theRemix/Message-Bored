@@ -1,0 +1,21 @@
+<h2>{{ topic.name }}</h2>
+<ul>
+  <li ng-repeat="message in topic.messages">
+    <h3 class="message-posted-by">posted by {{ message.Author.name }} at {{ message.createdAt | date }}</h3>
+    <div class="message-body">
+      {{ message.body }}
+    </div>
+  </li>
+</ul>
+
+<fieldset>
+  <legend>Post New Message</legend>
+  <div class="field">
+    <label for="newMessageBody">Message</label>
+    <br />
+    <textarea id="newMessageBody" ng-model="new_message.body"></textarea>
+  </div>
+  <div class="field">
+    <button type="submit" ng-click="topic.createMessage(new_message)">Post new message</button>
+  </div>
+</fieldset>
