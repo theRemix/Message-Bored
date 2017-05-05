@@ -9,10 +9,16 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Message.belongsTo(models.User, {
           as: 'Author',
-          foreignKey: 'author_id'
+          foreignKey: {
+            name: 'author_id',
+            allowNull: false
+          },
         });
         Message.belongsTo(models.Topic, {
-          foreignKey: 'topic_id'
+          foreignKey: {
+            name: 'topic_id',
+            allowNull: false
+          }
         });
       }
     }

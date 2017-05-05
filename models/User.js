@@ -9,11 +9,17 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         User.hasMany(models.Topic, {
-          foreignKey: 'created_by'
+          foreignKey: {
+            name: 'created_by',
+            allowNull: false
+          }
         });
         User.hasMany(models.Message, {
           as: 'Author',
-          foreignKey: 'author_id'
+          foreignKey: {
+            name: 'user_id',
+            allowNull: false
+          }
         });
       }
     }

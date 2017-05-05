@@ -90,8 +90,9 @@ Indexes:
     "Users_pkey" PRIMARY KEY, btree (id)
     "Users_name_key" UNIQUE CONSTRAINT, btree (name)
 Referenced by:
-    TABLE ""Messages"" CONSTRAINT "Messages_author_id_fkey" FOREIGN KEY (author_id) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE SET NULL
-    TABLE ""Topics"" CONSTRAINT "Topics_created_by_fkey" FOREIGN KEY (created_by) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE SET NULL
+    TABLE ""Messages"" CONSTRAINT "Messages_author_id_fkey" FOREIGN KEY (author_id) REFERENCES "Users"(id) ON UPDATE CASCADE
+    TABLE ""Messages"" CONSTRAINT "Messages_user_id_fkey" FOREIGN KEY (user_id) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE CASCADE
+    TABLE ""Topics"" CONSTRAINT "Topics_created_by_fkey" FOREIGN KEY (created_by) REFERENCES "Users"(id) ON UPDATE CASCADE
 ```
 
 `\dS "Topics"`
@@ -104,14 +105,14 @@ Referenced by:
  name       | character varying(255)   | not null
  createdAt  | timestamp with time zone | not null
  updatedAt  | timestamp with time zone | not null
- created_by | integer                  |
+ created_by | integer                  | not null
 Indexes:
     "Topics_pkey" PRIMARY KEY, btree (id)
     "Topics_name_key" UNIQUE CONSTRAINT, btree (name)
 Foreign-key constraints:
-    "Topics_created_by_fkey" FOREIGN KEY (created_by) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE SET NULL
+    "Topics_created_by_fkey" FOREIGN KEY (created_by) REFERENCES "Users"(id) ON UPDATE CASCADE
 Referenced by:
-    TABLE ""Messages"" CONSTRAINT "Messages_topic_id_fkey" FOREIGN KEY (topic_id) REFERENCES "Topics"(id) ON UPDATE CASCADE ON DELETE SET NULL
+    TABLE ""Messages"" CONSTRAINT "Messages_topic_id_fkey" FOREIGN KEY (topic_id) REFERENCES "Topics"(id) ON UPDATE CASCADE
 ```
 
 `\dS "Messages"`
@@ -124,13 +125,15 @@ Referenced by:
  name      | text                     | not null
  createdAt | timestamp with time zone | not null
  updatedAt | timestamp with time zone | not null
- author_id | integer                  |
- topic_id  | integer                  |
+ author_id | integer                  | not null
+ topic_id  | integer                  | not null
+ user_id   | integer                  | not null
 Indexes:
     "Messages_pkey" PRIMARY KEY, btree (id)
 Foreign-key constraints:
-    "Messages_author_id_fkey" FOREIGN KEY (author_id) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE SET NULL
-    "Messages_topic_id_fkey" FOREIGN KEY (topic_id) REFERENCES "Topics"(id) ON UPDATE CASCADE ON DELETE SET NULL
+    "Messages_author_id_fkey" FOREIGN KEY (author_id) REFERENCES "Users"(id) ON UPDATE CASCADE
+    "Messages_topic_id_fkey" FOREIGN KEY (topic_id) REFERENCES "Topics"(id) ON UPDATE CASCADE
+    "Messages_user_id_fkey" FOREIGN KEY (user_id) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE CASCADE
 ```
 
 ## Routes
