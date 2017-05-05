@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Message = sequelize.define("Message", {
-    name: {
+    body: {
       type: DataTypes.TEXT,
       allowNull: false
     }

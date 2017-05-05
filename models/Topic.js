@@ -15,6 +15,13 @@ module.exports = function(sequelize, DataTypes) {
           },
           as: 'Creator'
         });
+        Topic.hasMany(models.Message, {
+          as: 'Topic',
+          foreignKey: {
+            name: 'topic_id',
+            allowNull: false
+          }
+        });
       }
     }
   });

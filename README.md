@@ -91,7 +91,6 @@ Indexes:
     "Users_name_key" UNIQUE CONSTRAINT, btree (name)
 Referenced by:
     TABLE ""Messages"" CONSTRAINT "Messages_author_id_fkey" FOREIGN KEY (author_id) REFERENCES "Users"(id) ON UPDATE CASCADE
-    TABLE ""Messages"" CONSTRAINT "Messages_user_id_fkey" FOREIGN KEY (user_id) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE CASCADE
     TABLE ""Topics"" CONSTRAINT "Topics_created_by_fkey" FOREIGN KEY (created_by) REFERENCES "Users"(id) ON UPDATE CASCADE
 ```
 
@@ -122,18 +121,16 @@ Referenced by:
   Column   |           Type           |                        Modifiers
 -----------+--------------------------+---------------------------------------------------------
  id        | integer                  | not null default nextval('"Messages_id_seq"'::regclass)
- name      | text                     | not null
+ body      | text                     | not null
  createdAt | timestamp with time zone | not null
  updatedAt | timestamp with time zone | not null
  author_id | integer                  | not null
  topic_id  | integer                  | not null
- user_id   | integer                  | not null
 Indexes:
     "Messages_pkey" PRIMARY KEY, btree (id)
 Foreign-key constraints:
     "Messages_author_id_fkey" FOREIGN KEY (author_id) REFERENCES "Users"(id) ON UPDATE CASCADE
     "Messages_topic_id_fkey" FOREIGN KEY (topic_id) REFERENCES "Topics"(id) ON UPDATE CASCADE
-    "Messages_user_id_fkey" FOREIGN KEY (user_id) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE CASCADE
 ```
 
 ## Routes

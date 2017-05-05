@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Message, {
           as: 'Author',
           foreignKey: {
-            name: 'user_id',
+            name: 'author_id',
             allowNull: false
           }
         });
