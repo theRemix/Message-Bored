@@ -71,15 +71,15 @@ _**hint**: while writing your models, `db.sequelize.sync({force:true})` is helpf
   Column   |           Type           |                      Modifiers
 -----------+--------------------------+------------------------------------------------------
  id        | integer                  | not null default nextval('"Users_id_seq"'::regclass)
- name      | character varying(255)   |
+ name      | character varying(255)   | not null
  createdAt | timestamp with time zone | not null
  updatedAt | timestamp with time zone | not null
 Indexes:
     "Users_pkey" PRIMARY KEY, btree (id)
+    "Users_name_key" UNIQUE CONSTRAINT, btree (name)
 Referenced by:
     TABLE ""Messages"" CONSTRAINT "Messages_author_id_fkey" FOREIGN KEY (author_id) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE SET NULL
     TABLE ""Topics"" CONSTRAINT "Topics_created_by_fkey" FOREIGN KEY (created_by) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE SET NULL
-
 ```
 
 `\dS "Topics"`
@@ -89,17 +89,17 @@ Referenced by:
    Column   |           Type           |                       Modifiers
 ------------+--------------------------+-------------------------------------------------------
  id         | integer                  | not null default nextval('"Topics_id_seq"'::regclass)
- name       | character varying(255)   |
+ name       | character varying(255)   | not null
  createdAt  | timestamp with time zone | not null
  updatedAt  | timestamp with time zone | not null
  created_by | integer                  |
 Indexes:
     "Topics_pkey" PRIMARY KEY, btree (id)
+    "Topics_name_key" UNIQUE CONSTRAINT, btree (name)
 Foreign-key constraints:
     "Topics_created_by_fkey" FOREIGN KEY (created_by) REFERENCES "Users"(id) ON UPDATE CASCADE ON DELETE SET NULL
 Referenced by:
     TABLE ""Messages"" CONSTRAINT "Messages_topic_id_fkey" FOREIGN KEY (topic_id) REFERENCES "Topics"(id) ON UPDATE CASCADE ON DELETE SET NULL
-
 ```
 
 `\dS "Messages"`
@@ -109,7 +109,7 @@ Referenced by:
   Column   |           Type           |                        Modifiers
 -----------+--------------------------+---------------------------------------------------------
  id        | integer                  | not null default nextval('"Messages_id_seq"'::regclass)
- body      | text                     |
+ name      | text                     | not null
  createdAt | timestamp with time zone | not null
  updatedAt | timestamp with time zone | not null
  author_id | integer                  |

@@ -1,6 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
   var Topic = sequelize.define("Topic", {
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    }
   }, {
     classMethods: {
       associate: function(models) {
