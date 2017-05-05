@@ -6,7 +6,7 @@ Angular 1.x Exercise
 ## Setup the Server
 
 1. create a new node project using `npm`
-1. add the `express` dependency
+1. add the `express` and `body-parser` dependency
 1. add the `sequelize` `pg` and `pg-hstore` dependencies
 1. initialize a new `sequelize` project
 1. create a postgres user named `bored` with a password
@@ -16,6 +16,7 @@ Angular 1.x Exercise
 1. sync your models with postgres _refer to **[sql](#sql)**_
 1. setup an express project in `index.js`
 1. set up express static middleware configured to serve content from `./public`
+1. set up express static middleware for `body-parser`
 1. add router middleware for `/api` to use the `/api/index.js` module
 1. `/api/index.js` will require and use the three modules, `./messages`, `./topics`, `./users`
 1. implement the routes defined in **[routes](#routes)**
