@@ -61,7 +61,7 @@ _**hint**: while writing your models, `db.sequelize.sync({force:true})` is helpf
 | Foreign Key | Name    | Relation         |
 | ----------- | ------  | ---------------- |
 | created_by  | Creator | belongs to Users |
-| topic_id    | Topic   | has many Topics  |
+| topic_id    | Topic   | has many Messages |
 
 #### Messages
 
