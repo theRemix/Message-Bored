@@ -6,20 +6,31 @@
     <title>Message Bored</title>
     <link rel="stylesheet" href="./styles/styles.css" type="text/css" media="all" />
   </head>
-  <body ng-app="MessageBored">
+  <body>
 
-    <nav ng-controller="NavCtrl as nav">
-      <ul>
-        <li ng-href="/">Home</li>
-        <li ng-href="/latest">Latest</li>
-      </ul>
-    </nav>
+    <div ng-app="app">
+      <nav ng-controller="NavCtrl as nav">
+        <ul>
+          <li><a ng-href="/">Home</a></li>
+          <li ng-hide="loggedIn"><a ng-href="/login">Login</a></li>
+          <li ng-hide="loggedIn"><a ng-href="/register">Register</a></li>
+          <li ng-show="loggedIn"><a ng-href="/logout">Logout</a></li>
+          <li><a ng-href="/users">Users</a></li>
+          <li>-------------------</li>
+          <li><a ng-href="/latest">Latest</a></li>
+        </ul>
+      </nav>
+      <div ng-show="errors" class="errors">{{ errors }}</div>
+      <div ng-view></div>
+    </div>
 
-    <div ng-view></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
     <script src="./scripts/app.js"></script>
     <script src="./scripts/nav/controller.js"></script>
-    <script src="./scripts/latest/controller.js"></script>
+    <script src="./scripts/messages/index.js"></script>
+    <script src="./scripts/messages/service.js"></script>
+    <script src="./scripts/users/index.js"></script>
+    <script src="./scripts/users/service.js"></script>
   </body>
 </html>

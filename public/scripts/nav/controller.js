@@ -1,4 +1,4 @@
-angular.module('MessageBored')
-  .controller('NavCtrl', function(){
-
-  });
+angular.module('app')
+  .controller('NavCtrl', ['$rootScope', function($rootScope){
+    $rootScope.loggedIn = localStorage.hasOwnProperty('user_id');
+  }]);
