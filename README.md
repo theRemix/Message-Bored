@@ -43,13 +43,22 @@ _**hint**: while writing your models, `db.sequelize.sync({force:true})` is helpf
 | -------- | ------ | ------- |
 | name     | string | not null, unique  |
 
+**associations**
+
+| Foreign Key | Name    | Relation         |
+| created_by  | Topic   | has many Topics  |
+| author_id   | Author  | has many Messages |
+
 #### Topics
 
 | Property    | Type   | Options          |
 | ----------- | ------ | ---------------- |
 | name        | string | not null, unique |
 
-| created_by  | integer | fk to Users.id   |
+**associations**
+
+| Foreign Key | Name    | Relation         |
+| created_by  | User    | belongs to Users |
 
 #### Messages
 
@@ -57,8 +66,11 @@ _**hint**: while writing your models, `db.sequelize.sync({force:true})` is helpf
 | ---------- | ------- | --------------- |
 | body       | text    | not null        |
 
-| author_id  | integer | fk to Users.id  |
-| topic_id   | integer | fk to Topics.id |
+**associations**
+
+| Foreign Key | Name    | Relation         |
+| topic_id    | Topic   | belongs to Topic |
+| author_id   | Author  | belongs to Message |
 
 #### Relationships
 
@@ -127,6 +139,7 @@ Foreign-key constraints:
 | --------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------- |
 | api/users/index.js    | GET /api/users               | respond with all users                                                                          |
 | api/users/index.js    | GET /api/users/:id           | respond with user and all messages author'd by this user                                        |
+| api/users/index.js    | POST /api/users              | create and respond with new user                                                                |
 | api/topics/index.js   | GET /api/topics              | respond with all topics including the creator's name                                            |
 | api/topics/index.js   | POST /api/topics             | create and respond with a new topic                                                             |
 | api/topics/index.js   | PUT /api/topics/:name        | update and respond with the updated topic                                                       |
