@@ -1,0 +1,14 @@
+version: '2'
+services:
+  postgres:
+    image: "postgres:alpine"
+    environment:
+      - POSTGRES_DB=message_bored
+      - POSTGRES_USER=bored
+      - POSTGRES_PASSWORD=message-bored
+  web:
+    build: .
+    ports:
+     - "3000:3000"
+    environment:
+      - NODE-ENV=production
