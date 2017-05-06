@@ -4,22 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Message Bored</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
     <link rel="stylesheet" href="./styles/styles.css" type="text/css" media="all" />
   </head>
-  <body>
+  <body class="container">
 
     <div ng-app="app">
       <nav ng-controller="NavCtrl as nav">
-        <ul>
-          <li><a ng-href="/">Home</a></li>
-          <li ng-hide="loggedIn"><a ng-href="/login">Login</a></li>
-          <li ng-hide="loggedIn"><a ng-href="/register">Register</a></li>
-          <li ng-show="loggedIn"><a ng-href="/logout">Logout</a></li>
-          <li><a ng-href="/users">Users</a></li>
-          <li>-------------------</li>
-          <li><a ng-href="/latest">Latest</a></li>
-          <li ng-repeat="topic in nav.topics"><a ng-href="/topics/{{topic.id}}">{{topic.name}}</a></li>
-          <li ng-show="loggedIn"><a ng-href="/topics/new">Create New Topic</a></li>
+        <ul class="nav nav-center">
+          <li class="nav-item"><a ng-href="/">Home</a></li>
+          <li class="nav-item" ng-hide="loggedIn"><a ng-href="/login">Login</a></li>
+          <li class="nav-item" ng-hide="loggedIn"><a ng-href="/register">Register</a></li>
+          <li class="nav-item" ng-show="loggedIn"><a ng-href="/logout">Logout</a></li>
+          <li class="nav-item"><a ng-href="/users">Users</a></li>
+        </ul>
+        <ul class="nav nav-center">
+          <li class="nav-item"><a ng-href="/latest">Latest</a></li>
+          <li class="nav-item" ng-repeat="topic in nav.topics"><a ng-href="/topics/{{topic.id}}">{{topic.name}}</a></li>
+          <li class="nav-item" ng-show="loggedIn"><a ng-href="/topics/new">Create New Topic</a></li>
         </ul>
       </nav>
       <div ng-show="errors" class="errors">{{ errors }}</div>
