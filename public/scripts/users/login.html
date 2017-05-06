@@ -1,12 +1,14 @@
-<form ng-submit="login.send(user)">
-  <legend>Login</legend>
+<div style="text-align:center">
+  <form ng-submit="login.send(user)">
+    <label class="label">Login</label>
 
-  <div>
-    <label for="userName">Name</label>
-    <input id="userName" type="text" ng-model="user.name" />
-  </div>
-  <div>
-    <button type="submit">Login</button>
-  </div>
-
-</form>
+    <div class="field">
+      <label class="subtitle" for="userName">Name</label>
+      <br>
+      <input id="userName" class="control input" style="width: 10rem" type="text" ng-model="user.name" />
+    </div>
+    <div class="field">
+      <button class="button is-info" type="submit">Login</button>
+    </div>
+  </form>
+</div>

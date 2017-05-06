@@ -1,22 +1,37 @@
-<h2>{{ topic.name }}</h2>
-<h3 class="topic-created-by">created by {{ topic.Creator.name }} at {{ topic.createdAt | date }}</h3>
-<ul>
-  <li ng-repeat="message in topic.messages">
-    <h3 class="message-posted-by">posted by {{ message.Author.name }} at {{ message.createdAt | date }}</h3>
-    <div class="message-body">
-      {{ message.body }}
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container is-fluid">
+      <h2 class="title">{{ topic.name }}</h2>
+      <h3 class="subtitle topic-created-by">created by {{ topic.Creator.name }} at {{ topic.createdAt | date }}</h3>
     </div>
-  </li>
-</ul>
+  </div>
+</section>
 
-<fieldset>
-  <legend>Post New Message</legend>
-  <div class="field">
-    <label for="newMessageBody">Message</label>
-    <br />
-    <textarea id="newMessageBody" ng-model="new_message.body"></textarea>
+<br>
+
+<div class="container">
+  <ul>
+    <li class="message is-primary" ng-repeat="message in topic.messages">
+      <h3 class="message-header message-posted-by">posted by {{ message.Author.name }} at {{ message.createdAt | date }}</h3>
+      <div class="message-body">
+        {{ message.body }}
+      </div>
+    </li>
+  </ul>
+
+  <br>
+
+  <div class="container">
+    <div class="field">
+      <label class="label">Post New Message</label>
+      <div class="field">
+        <label for="newMessageBody">Message</label>
+        <br />
+        <textarea class="textarea" id="newMessageBody" ng-model="new_message.body"></textarea>
+      </div>
+      <div class="field">
+        <button class="button is-primary" type="submit" ng-click="topic.createMessage(new_message)">Post new message</button>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <button type="submit" ng-click="topic.createMessage(new_message)">Post new message</button>
-  </div>
-</fieldset>
+</div>
