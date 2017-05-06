@@ -1,12 +1,15 @@
-<form ng-submit="user.create(newUser)">
-  <legend>Register</legend>
+<div style="text-align:center">
+  <form ng-submit="user.create(newUser)" class="form-control">
+    <label class="label">Register</label>
 
-  <div>
-    <label for="userName">Name</label>
-    <input id="userName" type="text" ng-model="newUser.name" />
-  </div>
-  <div>
-    <button type="submit">Create User</button>
-  </div>
+    <div class="field">
+      <label class="subtitle" for="userName">Name</label>
+      <br>
+      <input id="userName" class="control input" style="width: 10rem" type="text" ng-model="newUser.name" />
+    </div>
+    <div class="field">
+      <button class="button is-info" type="submit">Create User</button>
+    </div>
 
-</form>
+  </form>
+</div>
