@@ -131,6 +131,7 @@ Each message post will show what topic the message was posted on, the date of wh
 1. add supertest
 1. enable real auth
 1. add protractor tests
+1. styles
 
 
 ### Schemas
